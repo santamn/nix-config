@@ -29,6 +29,11 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd # SSD storage
   ];
 
+  # NixPkgs Configuration
+  nixpkgs.overlays = [
+    inputs.nur.overlays.default
+  ];
+
   # If enabling NVIDIA, you will be prompted to configure hardware.nvidia
   # hardware.nvidia = {
   #   open = true; # For newer cards, you may want open drivers
@@ -66,11 +71,11 @@
       "networkmanager"
       "video"
     ]; # User groups (determines permissions)
-    shell = pkgs.nu; # Default shell (options: pkgs.bash, pkgs.zsh, pkgs.fish)
+    shell = pkgs.nushell; # Default shell (options: pkgs.bash, pkgs.zsh, pkgs.fish, pkgs.nushell)
   };
 
   # Hydenix Configuration - Main configuration for the Hydenix desktop environment
-  santamn = {
+  hydenix = {
     enable = true; # Enable Hydenix modules
     # Basic System Settings (REQUIRED):
     hostname = "thinkpad-x13-gen6"; # REQUIRED: Set your computer's network name (change to something unique)

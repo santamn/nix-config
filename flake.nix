@@ -8,28 +8,36 @@
     };
     hydenix.url = "github:richen604/hydenix";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nur = {
+      url = "github:nix-community/NUR";
+    };
   };
 
-  outputs =
-    { ... }@inputs:
-    let
-      hydenixConfig = inputs.nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          ./configuration.nix
-        ];
-      };
-      vmConfig = inputs.hydenix.lib.vmConfig {
+  outputs = {...} @ inputs: let
+    hydenixConfig = inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = {
         inherit inputs;
-        nixosConfiguration = hydenixConfig;
       };
-    in
-    {
-      nixosConfigurations.hydenix = hydenixConfig;
-      nixosConfigurations.default = hydenixConfig;
-      packages."x86_64-linux".vm = vmConfig.config.system.build.vm;
+      modules = [
+        ./configuration.nix
+      ];
     };
+    vmConfig = inputs.hydenix.lib.vmConfig {
+      inherit inputs;
+      nixosConfiguration = hydenixConfig;
+    };
+  in {
+    nixosConfigurations.hydenix = hydenixConfig;
+    nixosConfigurations.default = hydenixConfig;
+    packages."x86_64-linux".vm = vmConfig.config.system.build.vm;
+  };
 }
