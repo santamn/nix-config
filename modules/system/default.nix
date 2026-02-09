@@ -66,6 +66,18 @@
   users.users.santamn.extraGroups = ["docker"];
 
   # ===========================
+  # Nix Garbage Collection
+  # ===========================
+  nix.gc = {
+    automatic = true; # Enable automatic garbage collection
+    dates = "weekly"; # Run weekly
+    options = "--delete-older-than 30d"; # Delete generations older than 30 days
+  };
+
+  # Automatically optimize the Nix store to save disk space
+  nix.settings.auto-optimise-store = true;
+
+  # ===========================
   # Fonts
   # ===========================
   fonts.packages = with pkgs; [
