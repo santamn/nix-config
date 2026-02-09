@@ -5,13 +5,14 @@
 }: {
   imports = [
     # Program-specific configurations
-    ./programs/nushell.nix
-    ./programs/zsh.nix
     ./programs/direnv.nix
-    ./programs/starship.nix
     ./programs/ghostty.nix
     ./programs/git.nix
     ./programs/neovim.nix
+    ./programs/nushell.nix
+    ./programs/ssh.nix
+    ./programs/starship.nix
+    ./programs/zsh.nix
     ./programs/zen-browser.nix
   ];
 
@@ -111,7 +112,7 @@
     # --- Terminals ---
     terminals = {
       enable = true;
-      kitty.enable = false; # Using Ghostty instead
+      kitty.enable = false;
     };
   };
 }
