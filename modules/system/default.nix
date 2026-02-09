@@ -76,6 +76,26 @@
   nix.settings.auto-optimise-store = true;
 
   # ===========================
+  # Input Devices & Hardware
+  # ===========================
+  # Enable fingerprint reader
+  services.fprintd.enable = true;
+  # sudo コマンド実行時に指紋認証を許可する（sshd ではなく sudo）
+  security.pam.services.sudo.enableFingerprintAuth = true;
+
+  # Touchpad settings
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      naturalScrolling = true; # Scroll content down when swiping up (Natural Scrolling)
+    };
+  };
+
+  # Keyboard settings (Swap CapsLock and Ctrl)
+  services.xserver.xkb.options = "ctrl:swapcaps";
+  console.useXkbConfig = true; # Apply xkb options to console
+
+  # ===========================
   # Fonts
   # ===========================
   fonts.packages = with pkgs; [

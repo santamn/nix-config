@@ -10,6 +10,13 @@
 sudo nixos-rebuild switch --flake .#thinkpad-x13-gen6
 ```
 
+## upgrading
+
+```bash
+nix flake update
+sudo nixos-rebuild switch --flake .#thinkpad-x13-gen6
+```
+
 ## packages
 
 ### desktop applications
@@ -140,6 +147,10 @@ Rust プロジェクトで高速な wild リンカーを使用する開発環境
 [^1]: https://zenn.dev/asa1984/books/nix-hands-on/viewer/ch04-02-rust-project
 
 このように設定することで、プロジェクトの devShell 環境で wild リンカーが自動的に使用される。
+
+### fingerprint authentication
+
+`fprintd-enroll` コマンドを使って指紋を登録するか、あるいはデスクトップ環境の設定画面から設定できるかも。
 
 ## license 
 
