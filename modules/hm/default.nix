@@ -89,17 +89,6 @@
       email = "cle.neige@gmail.com";
     };
 
-    # --- Shell ---
-    shell = {
-      enable = true;
-      zsh = {
-        enable = false;
-      };
-      bash.enable = false;
-      fish.enable = false;
-      starship.enable = true;
-    };
-
     # --- Social ---
     social = {
       enable = true;
@@ -122,6 +111,21 @@
   # ===========================
   programs.nushell.enable = true;
 
+  # Zsh configuration (login shell)
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+
+    # インタラクティブセッションでnushellを起動
+    initExtra = ''
+      # インタラクティブシェルの場合のみnushellを起動
+      if [[ $- == *i* ]] && [[ -z "$NUSHELL_ACTIVE" ]]; then
+        export NUSHELL_ACTIVE=1
+        exec nu
+      fi
+    '';
+  };
+
   # direnv で devShell を自動的に読み込む
   programs.direnv = {
     enable = true;
@@ -131,7 +135,6 @@
   };
 
   # Ghostty terminal configuration
-  # Note: Ghostty config is managed via ~/.config/ghostty/config
   programs.ghostty = {
     enable = true;
     enableZshIntegration = true;

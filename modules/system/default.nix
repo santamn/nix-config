@@ -5,8 +5,13 @@
 
   environment.systemPackages = with pkgs; [
     git
-    docker-compose
   ];
+
+  # ===========================
+  # Shell
+  # ===========================
+  # Enable zsh system-wide (adds to /etc/shells, enables completion)
+  programs.zsh.enable = true;
 
   # ===========================
   # Bluetooth

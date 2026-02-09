@@ -66,7 +66,7 @@
       "networkmanager"
       "video"
     ]; # User groups (determines permissions)
-    shell = pkgs.nushell; # Default shell (options: pkgs.bash, pkgs.zsh, pkgs.fish, pkgs.nushell)
+    shell = pkgs.zsh; # Login shell: zsh (interactive shell auto-switches to nushell)
   };
 
   # Hydenix Configuration - Main configuration for the Hydenix desktop environment
