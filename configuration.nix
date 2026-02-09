@@ -29,11 +29,6 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd # SSD storage
   ];
 
-  # NixPkgs Configuration
-  nixpkgs.overlays = [
-    inputs.nur.overlays.default
-  ];
-
   # If enabling NVIDIA, you will be prompted to configure hardware.nvidia
   # hardware.nvidia = {
   #   open = true; # For newer cards, you may want open drivers
