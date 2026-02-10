@@ -27,7 +27,6 @@
 
     # --- Language Runtimes (for AstroNvim) ---
     nodejs # LSPs and REPL toggle terminal
-    python3 # Python REPL
     gdu # go DiskUsage() - Disk usage analyzer
     tree-sitter # Tree-sitter CLI for auto_install
 
