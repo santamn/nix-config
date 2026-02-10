@@ -101,8 +101,8 @@
         "toolkit.telemetry.unified" = false;
 
         # Performance
-        "gfx.webrender.all" = true;
-        "media.ffmpeg.vaapi.enabled" = true;
+        "gfx.webrender.all" = false;
+        "media.ffmpeg.vaapi.enabled" = false;
       };
     };
   };
