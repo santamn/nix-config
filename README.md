@@ -7,14 +7,14 @@
 ## apply configuration
 
 ```bash
-sudo nixos-rebuild switch --flake .#thinkpad-x13-gen6
+sudo nixos-rebuild switch --flake .#hydenix
 ```
 
 ## upgrading
 
 ```bash
 nix flake update
-sudo nixos-rebuild switch --flake .#thinkpad-x13-gen6
+sudo nixos-rebuild switch --flake .#hydenix
 ```
 
 ## packages
