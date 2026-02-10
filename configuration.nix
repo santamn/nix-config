@@ -92,21 +92,6 @@
     download-attempts = 10;
     connect-timeout = 10;
     stalled-download-timeout = 60;
-    curl-flags = [
-      "-4"
-      "--http1.1"
-      "--retry"
-      "10"
-      "--retry-all-errors"
-      "--retry-delay"
-      "1"
-      "--connect-timeout"
-      "10"
-      "--speed-time"
-      "30"
-      "--speed-limit"
-      "1024"
-    ];
   };
 
   # If enabling NVIDIA, you will be prompted to configure hardware.nvidia
