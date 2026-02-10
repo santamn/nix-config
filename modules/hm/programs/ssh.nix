@@ -1,6 +1,7 @@
 {...}: {
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
 
     # よく使うホストの設定
     matchBlocks = {
