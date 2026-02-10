@@ -78,10 +78,12 @@
   # ===========================
   # Input Devices & Hardware
   # ===========================
-  # Enable fingerprint reader
+  # 指紋認証デーモン (fprintd) を有効化
   services.fprintd.enable = true;
-  # sudo コマンド実行時に指紋認証を許可する（sshd ではなく sudo）
-  security.pam.services.sudo.enableFingerprintAuth = true;
+  security.pam.services = {
+    sudo.fprintAuth = true; # sudo で指紋認証を有効化
+    login.fprintAuth = true; # ログイン時に指紋認証を有効化
+  };
 
   # Touchpad settings
   services.libinput = {
