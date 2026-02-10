@@ -4,7 +4,7 @@
     enableCompletion = true;
 
     # インタラクティブセッションでnushellを起動
-    initExtra = ''
+    initContent = ''
       # インタラクティブシェルの場合のみnushellを起動
       if [[ $- == *i* ]] && [[ -z "$NUSHELL_ACTIVE" ]]; then
         export NUSHELL_ACTIVE=1
