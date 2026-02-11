@@ -150,7 +150,7 @@ Rust プロジェクトで高速な wild リンカーを使用する開発環境
 
 ### fingerprint authentication
 
-`fprintd-enroll` コマンドを使って指紋を登録するか、あるいはデスクトップ環境の設定画面から設定できるかも。
+`fprintd-enroll` コマンドを使って指紋を登録できる。
 
 ## license 
 
