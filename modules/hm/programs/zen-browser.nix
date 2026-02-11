@@ -1,11 +1,26 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
   # ===========================
   # Zen Browser Configuration
   # ===========================
+  # Zen Browser uses ~/.zen directory by default, but Home Manager manages ~/.mozilla/firefox.
+  # We create a profiles.ini in ~/.zen that points to the Home Manager managed profile.
+  home.file.".zen/profiles.ini".text = ''
+    [Profile0]
+    Name=default
+    IsRelative=0
+    Path=${config.home.homeDirectory}/.mozilla/firefox/default
+    Default=1
+
+    [General]
+    StartWithLastProfile=1
+    Version=2
+  '';
+
   programs.firefox = {
     enable = true;
     package = inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default;
