@@ -5,6 +5,7 @@
 }: {
   imports = [
     # ./example.nix - add your modules here
+    ./programs/nix-ld.nix
   ];
 
   environment.systemPackages = with pkgs; [
