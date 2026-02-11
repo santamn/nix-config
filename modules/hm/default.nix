@@ -85,8 +85,14 @@
           kb_options = ctrl:swapcaps
 
           touchpad {
-            natural_scroll = true # 指の上下とスクロール方向を逆にする
-            scroll_factor = 0.5   # スクロール速度を半分にする
+            # 指の上下とスクロール方向を逆にする
+            natural_scroll = true
+            # スクロール速度を半分にする
+            scroll_factor = 0.5
+            # 2本指での物理クリック（押し込み）を右クリックとして扱う
+            clickfinger_behavior = true
+            # 2本指タップを中クリック扱いにし、右クリックメニューの誤爆を防ぐ
+            tap_button_map = "lmr"
           }
         }
       '';
