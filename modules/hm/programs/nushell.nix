@@ -27,7 +27,7 @@
         # ERR エラーの修正も含む
         # https://www.nushell.sh/cookbook/external_completers.html#err-unknown-shorthand-flag-using-carapace
         # 下部の carapace パッケージと統合を有効にする必要があります
-        let carapace_completer = {|spans: list&lt;string&gt;|
+        let carapace_completer = {|spans|
           carapace $spans.0 nushell ...$spans
           | from json
           | if ($in | default [] | where value == $"($spans | last)ERR" | is-empty) { $in } else { null }
@@ -57,7 +57,7 @@
           ## https://www.nushell.sh/cookbook/external_completers.html#alias-completions
           let expanded_alias = scope aliases
           | where name == $spans.0
-          | get -i 0.expansion
+          | get -o 0.expansion
 
           let spans = if $expanded_alias != null {
             $spans
@@ -69,8 +69,8 @@
           ## エイリアス補完の修正終了
 
           match $spans.0 {
-            __zoxide_z | __zoxide_zi =&gt; $zoxide_completer
-            _ =&gt; $carapace_completer
+            __zoxide_z | __zoxide_zi => $zoxide_completer
+            _ => $carapace_completer
           } | do $in $spans
         }
 
