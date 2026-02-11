@@ -67,7 +67,7 @@
         kb_options = ctrl:swapcaps
         # 指の上下とスクロール方向を逆にする
         touchpad {
-          natural_scroll = false
+          natural_scroll = true
         }
       }
     '';
