@@ -61,10 +61,14 @@
   hydenix.hm = {
     enable = true;
 
-    # CapsLock と Ctrl キーを入れ替える
     hyprland.extraConfig = ''
       input {
+        # CapsLock と Ctrl キーを入れ替える
         kb_options = ctrl:swapcaps
+        # 指の上下とスクロール方向を逆にする
+        touchpad {
+          natural_scroll = false
+        }
       }
     '';
 

@@ -93,13 +93,6 @@
     };
   };
 
-  # Touchpad settings
-  # FIXME: スクロール方向をタッチバッド上の指の動きと逆にしたいが、true でも false でもスクロール方向が指の動きと揃ってしまう
-  services.libinput = {
-    enable = true;
-    touchpad.naturalScrolling = false;
-  };
-
   # Keyboard settings (Swap CapsLock and Ctrl) for TTY Console
   services.xserver.xkb.options = "ctrl:swapcaps";
   console.useXkbConfig = true; # Apply xkb options to console
