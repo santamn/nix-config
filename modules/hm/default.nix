@@ -91,7 +91,7 @@
             scroll_factor = 0.5
             # 2本指での物理クリック（押し込み）を右クリックとして扱う
             # clickfinger_behavior = true  # tap_button_map と競合するため無効化
-            clickfinger_behavior = false
+            clickfinger_behavior = true
             # 2本指タップを中クリック扱いにし、右クリックメニューの誤爆を防ぐ
             tap_button_map = lmr
           }
