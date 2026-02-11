@@ -63,7 +63,7 @@
 
     theme = {
       enable = true;
-      active = "Tokyo Night";
+      active = "Code Garden";
       themes = [
         "AncientAliens"
         "BlueSky"

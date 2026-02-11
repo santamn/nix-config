@@ -11,7 +11,7 @@
         error_symbol = "[➜](bold red)";
       };
 
-      format = builtins.concatStringsSep "\n" [
+      format = builtins.concatStringsSep "" [
         "[░▒▓](#a3aed2)"
         "[ ](bg:#a3aed2 fg:#090c0c)"
         "[](bg:#769ff0 fg:#a3aed2)"
@@ -21,7 +21,6 @@
         "$git_status"
         "[](fg:#394260 bg:#212736)"
         "$c"
-        "$clojure"
         "$golang"
         "$haskell"
         "$lua"
@@ -62,12 +61,6 @@
 
       c = {
         symbol = "";
-        style = "bg:#212736";
-        format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
-      };
-
-      clojure = {
-        symbol = "";
         style = "bg:#212736";
         format = "[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)";
       };
