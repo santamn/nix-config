@@ -91,7 +91,7 @@
           }
           hooks: {
             env_change: {
-              PWD: [{|before, after| print (ls) }] # ディレクトリ変更時に自動で ls を実行
+              PWD: [{|before, after| if $before != null { print (ls) } }] # ディレクトリ変更時に自動で ls を実行
             }
           }
         }
