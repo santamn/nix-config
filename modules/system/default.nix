@@ -12,6 +12,12 @@
   ];
 
   # ===========================
+  # Network & Connectivity
+  # ===========================
+  networking.networkmanager.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+
+  # ===========================
   # Shell
   # ===========================
   # Enable zsh system-wide (adds to /etc/shells, enables completion)
@@ -81,7 +87,10 @@
   services.fprintd.enable = true;
   security.pam.services = {
     sudo.fprintAuth = true; # sudo で指紋認証を有効化
-    login.fprintAuth = true; # ログイン時に指紋認証を有効化
+    login = {
+      fprintAuth = true; # ログイン時に指紋認証を有効化
+      enableGnomeKeyring = true; # キーリングの自動ロック解除
+    };
   };
 
   # Touchpad settings
