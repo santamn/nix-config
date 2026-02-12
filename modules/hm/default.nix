@@ -109,6 +109,22 @@
         }
       '';
 
+      # Dropdown ターミナルを Ghostty に設定
+      pyprland = {
+        enable = true;
+        overrideConfig = ''
+          [pyprland]
+          plugins = ["scratchpads"]
+
+          [scratchpads.console]
+          animation = "fromTop"
+          class = "com.ghostty.dropdown"
+          command = "ghostty --class=com.ghostty.dropdown --gtk-single-instance=false"
+          max_size = "90% 100%"
+          size = "75% 60%"
+        '';
+      };
+
       hypridle = {
         enable = true;
         overrideConfig = ''
