@@ -26,4 +26,13 @@ return {
       end,
     })
   end,
+
+  opts = {
+    filesystem = {
+      filtered_items = {
+        -- 隠しファイルを表示する
+        hide_dotfiles = false,
+      },
+    },
+  },
 }
