@@ -110,7 +110,8 @@
 
         # Ghostty Quick Terminal (Dropdown)
         # Super + Alt + T でトグル表示
-        bind = $mainMod ALT, T, exec, pgrep -f "ghostty --class=com.ghostty.quick" && hyprctl dispatch togglespecialworkspace quickterm || ghostty --class=com.ghostty.quick
+        # プロセス確認: 存在すればトグル、なければ起動して少し待ってから表示
+        bind = $mainMod ALT, T, exec, pgrep -f "ghostty --class=com.ghostty.quick" && hyprctl dispatch togglespecialworkspace quickterm || (ghostty --class=com.ghostty.quick & sleep 0.3; hyprctl dispatch togglespecialworkspace quickterm)
 
         # クイックターミナルのウィンドウ設定（上部から40%の高さで表示）
         windowrulev2 = float, class:^(com.ghostty.quick)$
