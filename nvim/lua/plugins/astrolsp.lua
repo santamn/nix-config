@@ -10,7 +10,7 @@ return {
   opts = {
     -- Configuration table of features provided by AstroLSP
     features = {
-      codelens = true, -- enable/disable codelens refresh on start
+      codelens = true,     -- enable/disable codelens refresh on start
       inlay_hints = false, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
     },
@@ -37,7 +37,7 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
-      -- "pyright"
+      -- "pyright"snac
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
@@ -70,7 +70,9 @@ return {
           -- the rest of the autocmd options (:h nvim_create_autocmd)
           desc = "Refresh codelens (buffer)",
           callback = function(args)
-            if require("astrolsp").config.features.codelens then vim.lsp.codelens.refresh { bufnr = args.buf } end
+            if require("astrolsp").config.features.codelens then
+              vim.lsp.codelens.refresh({ bufnr = args.buf })
+            end
           end,
         },
       },
@@ -80,15 +82,20 @@ return {
       n = {
         -- a `cond` key can provided as the string of a server capability to be required to attach, or a function with `client` and `bufnr` parameters from the `on_attach` that returns a boolean
         gD = {
-          function() vim.lsp.buf.declaration() end,
+          function()
+            vim.lsp.buf.declaration()
+          end,
           desc = "Declaration of current symbol",
           cond = "textDocument/declaration",
         },
         ["<Leader>uY"] = {
-          function() require("astrolsp.toggles").buffer_semantic_tokens() end,
+          function()
+            require("astrolsp.toggles").buffer_semantic_tokens()
+          end,
           desc = "Toggle LSP semantic highlight (buffer)",
           cond = function(client)
-            return client.supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens ~= nil
+            return client:supports_method("textDocument/semanticTokens/full")
+                and vim.lsp.semantic_tokens ~= nil
           end,
         },
         -- TODO: 関数名や変数名を意味的にまとめて改名するリネーム機能
