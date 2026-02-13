@@ -10,6 +10,7 @@
     ./programs/fcitx5.nix
     ./programs/ghostty.nix
     ./programs/git.nix
+    ./programs/kdeconnect.nix
     ./programs/neovim.nix
     ./programs/nushell.nix
     ./programs/ssh.nix

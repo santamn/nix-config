@@ -6,6 +6,7 @@
   imports = [
     # ./example.nix - add your modules here
     ./programs/nix-ld.nix
+    ./programs/kdeconnect.nix
   ];
 
   environment.systemPackages = with pkgs; [
