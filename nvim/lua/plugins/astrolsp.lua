@@ -56,6 +56,17 @@ return {
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {
       -- first key is the `augroup` to add the auto commands to (:h augroup)
+      lsp_document_diagnostics = {
+        -- condition to verify if the client supports diagnostics
+        cond = "textDocument/publishDiagnostics",
+        {
+          event = { "CursorHold" },
+          desc = "Show diagnostics on cursor hold",
+          callback = function()
+            vim.diagnostic.open_float { focus = false, scope = "cursor" }
+          end,
+        },
+      },
       lsp_codelens_refresh = {
         -- Optional condition to create/delete auto command group
         -- can either be a string of a client capability or a function of `fun(client, bufnr): boolean`
