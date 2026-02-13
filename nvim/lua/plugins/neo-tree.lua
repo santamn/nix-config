@@ -33,6 +33,8 @@ return {
         -- 隠しファイルを表示する
         hide_dotfiles = false,
       },
+      -- 'nvim .' で起動したときに netrw の代わりに Neo-tree を開く
+      hijack_netrw_behavior = "open_default",
     },
   },
 }

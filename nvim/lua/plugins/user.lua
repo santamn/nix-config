@@ -19,25 +19,76 @@ return {
   -- customize dashboard options
   {
     "folke/snacks.nvim",
-    opts = {
-      dashboard = {
-        preset = {
-          header = table.concat({
-            " █████  ███████ ████████ ██████   ██████ ",
-            "██   ██ ██         ██    ██   ██ ██    ██",
-            "███████ ███████    ██    ██████  ██    ██",
-            "██   ██      ██    ██    ██   ██ ██    ██",
-            "██   ██ ███████    ██    ██   ██  ██████ ",
-            "",
-            "███    ██ ██    ██ ██ ███    ███",
-            "████   ██ ██    ██ ██ ████  ████",
-            "██ ██  ██ ██    ██ ██ ██ ████ ██",
-            "██  ██ ██  ██  ██  ██ ██  ██  ██",
-            "██   ████   ████   ██ ██      ██",
-          }, "\n"),
-        },
-      },
-    },
+    opts = function(_, opts)
+      opts.dashboard = opts.dashboard or {}
+      opts.dashboard.preset = opts.dashboard.preset or {}
+      opts.dashboard.preset.header = table.concat({
+        " █████  ███████ ████████ ██████   ██████ ",
+        "██   ██ ██         ██    ██   ██ ██    ██",
+        "███████ ███████    ██    ██████  ██    ██",
+        "██   ██      ██    ██    ██   ██ ██    ██",
+        "██   ██ ███████    ██    ██   ██  ██████ ",
+        "",
+        "███    ██ ██    ██ ██ ███    ███",
+        "████   ██ ██    ██ ██ ████  ████",
+        "██ ██  ██ ██    ██ ██ ██ ████ ██",
+        "██  ██ ██  ██  ██  ██ ██  ██  ██",
+        "██   ████   ████   ██ ██      ██",
+      }, "\n")
+
+      local open_dir_key = {
+        icon = "📂︎",
+        key = "o",
+        desc = "Open Directory",
+        action = function()
+          local get_dirs = function()
+            if vim.fn.executable "fd" == 1 then
+              return { "fd", "--type", "d", "--hidden", "--exclude", ".git" }
+            elseif vim.fn.executable "fdfind" == 1 then
+              return { "fdfind", "--type", "d", "--hidden", "--exclude", ".git" }
+            else
+              return { "find", ".", "-type", "d", "-not", "-path", "*/.*" }
+            end
+          end
+
+          require("telescope.builtin").find_files {
+            prompt_title = "Open Directory",
+            find_command = get_dirs(),
+            previewer = false,
+            attach_mappings = function(prompt_bufnr, map)
+              local actions = require "telescope.actions"
+              local action_state = require "telescope.actions.state"
+              actions.select_default:replace(function()
+                actions.close(prompt_bufnr)
+                local selection = action_state.get_selected_entry()
+                if selection then
+                  vim.cmd("cd " .. selection[1])
+                  vim.cmd "Neotree show"
+                end
+              end)
+              return true
+            end,
+          }
+        end,
+      }
+
+      if opts.dashboard.preset.keys then
+        table.insert(opts.dashboard.preset.keys, 3, open_dir_key)
+      else
+        opts.dashboard.preset.keys = {
+          { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+          open_dir_key,
+          { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+          { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+          { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+          { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+        }
+      end
+
+      return opts
+    end,
   },
 
   -- You can disable default plugins as follows:
