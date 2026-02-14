@@ -109,7 +109,8 @@
           }
         }
 
-        windowrulev2 = opacity 0.97 0.97,class:vesktop
+        windowrulev2 = opacity 0.97 0.97, class:vesktop
+        windowrulev2 = opacity 1.0 1.0, class:zen-beta
       '';
 
       hypridle = {
@@ -194,3 +195,4 @@
     };
   };
 }
+
