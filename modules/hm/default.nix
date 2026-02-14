@@ -102,11 +102,20 @@
             natural_scroll = true
             # スクロール速度を半分にする
             scroll_factor = 0.5
-            # 2本指での物理クリック（押し込み）を右クリックとして扱う
+
+            # タッチパッドの押し込みをクリックとして扱う
+            # 1本:左クリック 2本:右クリック、3本:中クリック
             clickfinger_behavior = true
-            # 2本指タップを中クリック扱いにし、右クリックメニューの誤爆を防ぐ
+            # タップでクリックを有効化
+            tap-to-click = true
+            # 1本:左クリック 2本:中クリック 3本:右クリック に変更
             tap_button_map = lmr
           }
+        }
+
+        misc {
+          # 中クリックペーストを無効化
+          middle_click_paste = false
         }
 
         windowrulev2 = opacity 0.97 0.97, class:vesktop
@@ -195,4 +204,3 @@
     };
   };
 }
-
