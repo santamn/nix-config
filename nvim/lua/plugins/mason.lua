@@ -9,16 +9,11 @@ return {
     opts = {
       -- Make sure to use the names found in `:Mason`
       ensure_installed = {
-        -- install language servers
-        "lua-language-server",
+        -- === Lua ===
+        "lua-language-server", -- language server
+        "stylua",              -- formatter
 
-        -- install formatters
-        "stylua",
-
-        -- install debuggers
-        "debugpy",
-
-        -- install any other package
+        -- === etc ===
         "tree-sitter-cli",
       },
     },
