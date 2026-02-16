@@ -42,32 +42,83 @@ return {
       "rust_analyzer",
     },
     -- customize language server configuration options passed to `lspconfig`
-    ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
-      rust_analyzer = {
-        -- rust_analyzer のリンターを clippy にする
+      rust_analyzer = { -- ref: https://syu-m-5151.hatenablog.com/entry/2026/01/29/130742
         settings = {
           ["rust-analyzer"] = {
-            checkOnSave = true,
-            -- チェックに使用するコマンドとオプション設定
-            check = {
-              command = "clippy", -- ここで clippy を指定
-              features = "all",   -- 全機能を含めてチェック
+            checkOnSave = {
+              command = "clippy",
+              extraArgs = { "--all", "--", "-W", "clippy::all" },
             },
-            -- Diagnostics を明示的に有効化
-            diagnostics = {
-              enable = true,
-              -- experimental = { enable = true }, -- 必要であれば実験的機能もON
-            },
-            -- Cargoの設定
             cargo = {
               allFeatures = true,
-              loadOutDirsFromCheck = false, -- ビルドスクリプトの出力を読み込まない（必要に応じて変更）
+              loadOutDirsFromCheck = true,
+              buildScripts = { enable = true },
             },
-            -- プロシージャマクロの有効化
             procMacro = {
               enable = true,
+              attributes = { enable = true },
+            },
+            inlayHints = {
+              enable = true,
+              chainingHints = { enable = true },
+              typeHints = { enable = true, hideClosureInitialization = true },
+              parameterHints = { enable = true },
+              closureReturnTypeHints = { enable = "with_block" },
+              lifetimeElisionHints = { enable = "skip_trivial", useParameterNames = true },
+              maxLength = 25,
+              bindingModeHints = { enable = true },
+              closureCaptureHints = { enable = true },
+              discriminantHints = { enable = "fieldless" },
+              expressionAdjustmentHints = { enable = "reborrow" },
+              rangeExclusiveHints = { enable = true },
+            },
+            completion = {
+              autoimport = { enable = true },
+              postfix = { enable = true },
+              callable = { snippets = "fill_arguments" },
+              fullFunctionSignatures = { enable = true },
+              privateEditable = { enable = true },
+            },
+            imports = {
+              granularity = { group = "module" },
+              prefix = "self",
+            },
+            diagnostics = {
+              enable = true,
+              experimental = { enable = true },
+              styleLints = { enable = true },
+            },
+            semanticHighlighting = {
+              operator = { specialization = { enable = true } },
+              punctuation = { enable = true, specialization = { enable = true } },
+              strings = { enable = true },
+            },
+            hover = {
+              actions = {
+                enable = true,
+                references = { enable = true },
+                run = { enable = true },
+                debug = { enable = true },
+                gotoTypeDef = { enable = true },
+                implementations = { enable = true },
+              },
+              documentation = { enable = true, keywords = { enable = true } },
+              links = { enable = true },
+            },
+            typing = {
+              autoClosingAngleBrackets = { enable = true },
+            },
+            lens = {
+              enable = true,
+              references = { enable = true, adt = { enable = true }, enumVariant = { enable = true }, method = { enable = true }, trait = { enable = true } },
+              implementations = { enable = true },
+              run = { enable = true },
+              debug = { enable = true },
+            },
+            workspace = {
+              symbol = { search = { kind = "all_symbols" } },
             },
           },
         },

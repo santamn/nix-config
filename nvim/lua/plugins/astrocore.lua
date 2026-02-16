@@ -16,6 +16,7 @@ return {
       diagnostics = { virtual_text = true, virtual_lines = false }, -- diagnostic settings on startup
       highlighturl = true,                                          -- highlight URLs at start
       notifications = true,                                         -- enable notifications at start
+      formatting = false,                                           -- conform側で format_on_save を制御するため、AstroLSPのformattingは無効化
     },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
