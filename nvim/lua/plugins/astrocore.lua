@@ -44,22 +44,8 @@ return {
         signcolumn = "yes",        -- sets vim.opt.signcolumn to yes
         wrap = false,              -- sets vim.opt.wrap
         clipboard = "unnamedplus", -- sync clipboard with OS
-
-        -- rust_analyzer のリンターを clippy にする
-        rust_analyzer = {
-          settings = {
-            ["rust-analyzer"] = {
-              checkOnSave = {
-                command = "clippy",
-              },
-              cargo = {
-                allFeatures = true,
-              },
-            },
-          },
-        },
       },
-      g = { -- vim.g.<key>
+      g = {                        -- vim.g.<key>
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
