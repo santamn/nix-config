@@ -45,13 +45,30 @@ return {
     ---@diagnostic disable: missing-fields
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
-      -- rust_analyzer のリンターを clippy にする
       rust_analyzer = {
+        -- rust_analyzer のリンターを clippy にする
         settings = {
           ["rust-analyzer"] = {
             checkOnSave = true,
-            check = { command = "clippy" },
-            cargo = { allFeatures = true },
+            -- チェックに使用するコマンドとオプション設定
+            check = {
+              command = "clippy", -- ここで clippy を指定
+              features = "all",   -- 全機能を含めてチェック
+            },
+            -- Diagnostics を明示的に有効化
+            diagnostics = {
+              enable = true,
+              -- experimental = { enable = true }, -- 必要であれば実験的機能もON
+            },
+            -- Cargoの設定
+            cargo = {
+              allFeatures = true,
+              loadOutDirsFromCheck = false, -- ビルドスクリプトの出力を読み込まない（必要に応じて変更）
+            },
+            -- プロシージャマクロの有効化
+            procMacro = {
+              enable = true,
+            },
           },
         },
       },
