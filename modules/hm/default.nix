@@ -46,9 +46,12 @@
 
   programs = {
     nix-index = {
-      enable = true;
-      enableNushellIntegration = true;
-      enableZshIntegration = true;
+      enable = false;
+      # enableNushellIntegration = true;
+      # enableZshIntegration = true;
+    };
+    command-not-found = {
+      enable = false;
     };
   };
 
