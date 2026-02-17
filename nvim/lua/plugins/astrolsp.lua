@@ -47,7 +47,8 @@ return {
       rust_analyzer = { -- ref: https://syu-m-5151.hatenablog.com/entry/2026/01/29/130742
         settings = {
           ["rust-analyzer"] = {
-            checkOnSave = {
+            checkOnSave = true,
+            check = {
               command = "clippy",
               extraArgs = { "--all", "--", "-W", "clippy::all" },
             },
