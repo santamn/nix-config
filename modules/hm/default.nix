@@ -6,7 +6,6 @@
   ...
 }: {
   imports = [
-    # Program-specific configurations
     ./programs/direnv.nix
     ./programs/fcitx5.nix
     ./programs/ghostty.nix
@@ -45,14 +44,14 @@
     signal-desktop
   ];
 
-  programs = {
-    nix-index = {
-      enable = lib.mkForce false;
-      # enableNushellIntegration = true;
-      # enableZshIntegration = true;
-    };
-    command-not-found.enable = false;
-  };
+  # programs = {
+  #   nix-index = {
+  #     enable = lib.mkForce false;
+  #     # enableNushellIntegration = true;
+  #     # enableZshIntegration = true;
+  #   };
+  #   command-not-found.enable = false;
+  # };
 
   # ===========================
   # XDG User Directories

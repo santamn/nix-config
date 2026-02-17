@@ -72,19 +72,16 @@
               PWD: [{|before, after| if $before != null { print (ls) } }],
             },
             # --- コマンド完了通知 ---
-            # コマンド実行前: 時間を記録
-            pre_execution: [{ || $env.CMD_START_TIME = (date now) }],
-            # プロンプト表示前（コマンド終了後）: 時間をチェックして通知
             pre_prompt: [{ ||
-              if ($env.CMD_START_TIME? != null) {
-                let duration = ((date now) - $env.CMD_START_TIME)
-                if $duration > 10sec { # 10秒以上かかったら通知
+              if ($env.CMD_DURATION_MS? != null) {
+                # 前回のコマンドの実行時間を取得
+                let duration = ($env.CMD_DURATION_MS | into int | into duration)
+                # 10秒以上かかったら通知
+                if $duration > 10sec {
                   notify-send "コマンド完了" $"所要時間: ($duration)" -i terminal --urgency=normal
                   try { gsound-play -i complete }
                 }
               }
-              # 次回のためにリセット
-              $env.CMD_START_TIME = null
             }],
           },
         }
